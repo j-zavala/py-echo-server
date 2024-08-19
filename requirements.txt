@@ -1,0 +1,6 @@
+# Python 3.9.6
+
+# No external dependencies required for basic socket programming
+
+# If you add external libraries later, list them here, for example:
+# requests==2.26.0
