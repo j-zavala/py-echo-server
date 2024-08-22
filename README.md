@@ -161,6 +161,7 @@ python client.py machine_A_ip_address 4444
 
 In this section, we provide a visual representation of how the TCP handshake and subsequent data exchange occur between a client and a server in an echo server implementation.
 
+```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'background': '#ffffff'}}}%%
 sequenceDiagram
     participant Client
@@ -199,6 +200,7 @@ sequenceDiagram
     Client->>Server: ACK
     Note over Client,Server: Connection closed
     end
+```
 
 The diagram illustrates TCP communication from an application-level perspective, specifically focusing on how Python code using sockets interacts with the operating system to manage network communication. If we were to reference the TCP/IP model (or OSI model), this diagram primarily showcases the Application Layer (Layer 7 in the OSI model) and how it interfaces with the underlying layers.
 
