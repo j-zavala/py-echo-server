@@ -1,5 +1,3 @@
-Here's the updated README with modifications to align with the observations based on your code:
-
 # Echo Server
 
 A simple echo server that can be used to test client-server communication via TCP/IP.
