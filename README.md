@@ -161,47 +161,49 @@ python client.py machine_A_ip_address 4444
 
 In this section, we provide a visual representation of how the TCP handshake and subsequent data exchange occur between a client and a server in an echo server implementation.
 
-![Mermaid Diagram](https://www.mermaidchart.com/raw/8577050e-3959-4c63-a3ed-9b4a1d4141b0?theme=light&version=v0.1&format=svg)
-
-```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': '#ffffff'}}}%%
 sequenceDiagram
     participant Client
     participant Server
 
+    rect rgb(240,248,255)
     Note over Client,Server: Both Client and Server have their own TCP stack
-
     Note over Server: s.bind((host, port))
     Note over Server: s.listen()
     Note over Server: Server is ready to accept connections
-
+    end
+    
+    rect rgb(255,228,225)
     Note over Client: s.connect((host, port))
     Client->>Server: SYN
     Note over Server: s.accept() (blocking, waiting for connection)
     Server-->>Client: SYN-ACK
     Client->>Server: ACK
     Note over Server: s.accept() returns (conn, addr)
+    end
     
+    rect rgb(144,238,144)
     Note over Client,Server: Connection established
-
     Client->>Server: s.sendall(message.encode())
     Note over Server: data = conn.recv(1024)
     Server->>Client: conn.sendall(data)
     Note over Client: s.recv(1024)
-
     Note over Client,Server: Data exchange continues...
+    end
 
+    rect rgb(255,248,220)
     Note over Client: Client initiates close
     Client->>Server: FIN
     Server->>Client: ACK
     Server->>Client: FIN
     Client->>Server: ACK
     Note over Client,Server: Connection closed
-```
+    end
 
 The diagram illustrates TCP communication from an application-level perspective, specifically focusing on how Python code using sockets interacts with the operating system to manage network communication. If we were to reference the TCP/IP model (or OSI model), this diagram primarily showcases the Application Layer (Layer 7 in the OSI model) and how it interfaces with the underlying layers.
 
 - **Application Layer (Layer 7)**: Your code resides here, making use of network services to perform tasks like sending and receiving messages.
-- **Transport Layer (Layer 4)**: Although not explicitly separated, the diagram touches on this layer through the TCP stack’s role in ensuring reliable data transmission between the client and server.
+- **Transport Layer (Layer 4)**: Although not explicitly separated, the diagram touches on this layer through the TCP stack's role in ensuring reliable data transmission between the client and server.
 - **Operating System Role**: The OS bridges the gap between your application and the network, managing the complexities of TCP communication while providing your code with a straightforward interface (the socket API).
 
 > NOTE: The diagram does not delve into the specifics of the lower layers (such as the Network Layer or Data Link Layer). Instead, it focuses on the higher-level interaction where the application code interfaces with the OS's networking capabilities. The lower layers (which handle routing, addressing, and physical transmission of data) are abstracted away, allowing you to concentrate on the application-level logic.
