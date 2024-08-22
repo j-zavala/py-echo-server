@@ -1,3 +1,5 @@
+Here's the updated README with modifications to align with the observations based on your code:
+
 # Echo Server
 
 A simple echo server that can be used to test client-server communication via TCP/IP.
@@ -14,13 +16,13 @@ A simple echo server that can be used to test client-server communication via TC
 
 ## Overview
 
-The Echo Server is a simple yet powerful tool designed for testing and demonstrating basic client-server communication using TCP/IP protocols. This project aims to provide developers, network administrators, and students with a straightforward implementation of a server that echoes back any message it receives from a client.
+The Echo Server is a simple yet powerful tool designed for testing and demonstrating basic client-server communication using the TCP/IP protocol suite. This project provides developers, network administrators, and students with a straightforward implementation of a server that echoes back any message it receives from a client.
 
 Key features and functionalities include:
 
 1. TCP/IP Communication: Utilizes standard socket programming to establish reliable connections between clients and the server.
 
-2. Concurrent Client Handling: Capable of managing multiple client connections simultaneously, allowing for scalability testing.
+2. Sequential Client Handling: Manages one client connection at a time. The server uses blocking I/O and handles each client sequentially, which is typical for a basic implementation.
 
 3. Cross-Platform Compatibility: Developed in Python, ensuring compatibility across various operating systems.
 
@@ -28,9 +30,7 @@ Key features and functionalities include:
 
 5. Customizable Port: Allows users to specify the port number, facilitating testing on different network configurations.
 
-6. Logging: Implements basic logging to track incoming connections and messages for debugging and monitoring purposes.
-
-7. Graceful Shutdown: Includes mechanisms for properly closing connections and shutting down the server.
+6. Graceful Shutdown: The server and client can be safely stopped using keyboard interrupts (e.g., `Ctrl+C`).
 
 This Echo Server serves as an excellent starting point for learning about network programming, debugging network issues, and testing client applications. It can be particularly useful in scenarios such as:
 
@@ -43,31 +43,23 @@ By providing a simple yet functional echo service, this project helps solve comm
 
 ### Technologies Used
 
-- Language: Python 3.9.6
+- Language: Python 3.6+
 - Key Libraries/Tools:
-  - socket: Built-in Python module for network programming
+  - `socket`: Built-in Python module for network programming
   - No external dependencies required
 
 The project utilizes Python's standard library, specifically the `socket` module, to implement the Echo Server and Client. This approach ensures minimal setup requirements and cross-platform compatibility.
 
 Key components:
-1. Server implementation:
-```python:server.py
-startLine: 31
-endLine: 65
-```
-2. Client implementation:
-```python:client.py
-startLine: 28
-endLine: 61
-```
+1. Server implementation: The server code handles binding to a specific IP and port, listening for connections, and echoing received messages back to the client.
+2. Client implementation: The client connects to the server, sends user-inputted messages, and prints the echoed responses.
 
 By leveraging Python's built-in capabilities, the project maintains simplicity while demonstrating fundamental concepts of network programming.
 
 ## Installation
 
 ### Prerequisites
-- Python 3.9.6 or higher
+- Python 3.6+ (Python 3.9.6 or higher recommended)
 
 ### Setup
 1. Clone the repository:
@@ -85,6 +77,7 @@ By leveraging Python's built-in capabilities, the project maintains simplicity w
    python -m venv echo-server-venv
    source echo-server-venv/bin/activate  # On Windows, use `echo-server-venv\Scripts\activate`
    ```
+   Using a virtual environment helps to isolate dependencies and keep your project environment clean.
 
 4. Install dependencies:
    As this project uses only Python's standard library, there are no external dependencies to install. However, if you add dependencies in the future, you can install them using:
@@ -94,14 +87,7 @@ By leveraging Python's built-in capabilities, the project maintains simplicity w
 
 The project is now set up and ready to run. No additional configuration is required.
 
-Note: The `.gitignore` file is already set up to exclude common Python and environment-specific files:
-
-```python:.gitignore
-startLine: 1
-endLine: 45
-```
-
-This ensures that only necessary project files are tracked by version control.
+Note: The `.gitignore` file is already set up to exclude common Python and environment-specific files.
 
 ## Usage
 
@@ -134,6 +120,9 @@ python client.py 127.0.0.1 4444
 ```
 
 This will connect to the server at address 127.0.0.1 and port 4444.
+
+### Stopping the Server and Client
+To safely stop the server or client, use `Ctrl+C` in the terminal where the process is running. This will send a keyboard interrupt to terminate the program gracefully.
 
 ## Examples
 
@@ -210,15 +199,6 @@ The diagram illustrates TCP communication from an application-level perspective,
 
 > NOTE: The diagram does not delve into the specifics of the lower layers (such as the Network Layer or Data Link Layer). Instead, it focuses on the higher-level interaction where the application code interfaces with the OS's networking capabilities. The lower layers (which handle routing, addressing, and physical transmission of data) are abstracted away, allowing you to concentrate on the application-level logic.
 
-
-## Video Walkthrough
-
-[Insert link to video walkthrough or tutorial]
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
-
 ## License
 
-[Insert license information]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
